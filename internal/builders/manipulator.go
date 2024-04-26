@@ -25,6 +25,13 @@ func (b *ManipulatorBuilder) ToIfAlone(to ...*ToEventBuilder) *ManipulatorBuilde
 	return b
 }
 
+func (b *ManipulatorBuilder) ToAfterKeyUp(to ...*ToEventBuilder) *ManipulatorBuilder {
+	for _, t := range to {
+		b.manipulator.ToAfterKeyUp = append(b.manipulator.ToAfterKeyUp, t.Build())
+	}
+	return b
+}
+
 func (b *ManipulatorBuilder) Parameters(parameters karabiner.BasicParameters) *ManipulatorBuilder {
 	b.manipulator.Parameters = parameters
 	return b

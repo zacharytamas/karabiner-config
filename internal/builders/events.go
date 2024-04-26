@@ -48,6 +48,16 @@ func (b *ToEventBuilder) Modifiers(modifiers ...karabiner.Modifier) *ToEventBuil
 	return b
 }
 
+func (b *ToEventBuilder) SetVariable(name string, value interface{}) *ToEventBuilder {
+	switch value.(type) {
+	case string, bool, int, float32, float64:
+		b.toEvent.SetVariable = &karabiner.ToVariable{Name: name, Value: value}
+	default:
+		panic("Unsupported type")
+	}
+	return b
+}
+
 func (b *ToEventBuilder) Build() karabiner.ToEvent {
 	return b.toEvent
 }

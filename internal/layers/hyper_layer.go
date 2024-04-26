@@ -28,9 +28,12 @@ func NewHyperLayer(key karabiner.KeyCode, varName string) *HyperLayerBuilder {
 	builder.ruleBuilder.AddManipulators(
 		builders.NewManipulator().
 			From(builders.NewFromEvent().
-				KeyCode("o").
-				MandatoryModifiers("command", "control", "shift", "option"),
-			),
+				KeyCode(key).
+				MandatoryModifiers("command", "option", "control", "shift"),
+			).
+			To(builders.NewToEvent().SetVariable(varName, 1)).
+			ToAfterKeyUp(builders.NewToEvent().SetVariable(varName, 0)).
+			ToIfAlone(builders.NewToEvent().KeyCode(key)),
 	)
 	return &builder
 }

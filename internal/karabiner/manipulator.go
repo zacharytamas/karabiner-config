@@ -3,11 +3,12 @@ package karabiner
 type BasicParameters map[string]any
 
 type BasicManipulator struct {
-	Type       string          `json:"type"`
-	From       FromEvent       `json:"from"`
-	To         []ToEvent       `json:"to,omitempty"`
-	ToIfAlone  []ToEvent       `json:"to_if_alone,omitempty"`
-	Parameters BasicParameters `json:"parameters,omitempty"`
+	Type         string          `json:"type"`
+	From         FromEvent       `json:"from"`
+	To           []ToEvent       `json:"to,omitempty"`
+	ToIfAlone    []ToEvent       `json:"to_if_alone,omitempty"`
+	ToAfterKeyUp []ToEvent       `json:"to_after_key_up,omitempty"`
+	Parameters   BasicParameters `json:"parameters,omitempty"`
 }
 
 func NewBasicManipulator() *BasicManipulator {
