@@ -19,9 +19,10 @@ type FromEvent struct {
 }
 
 type ToEvent struct {
-	KeyCode     KeyCode     `json:"key_code,omitempty"`
-	Modifiers   []Modifier  `json:"modifiers,omitempty"`
-	SetVariable *ToVariable `json:"set_variable,omitempty"`
+	KeyCode      KeyCode     `json:"key_code,omitempty"`
+	Modifiers    []Modifier  `json:"modifiers,omitempty"`
+	SetVariable  *ToVariable `json:"set_variable,omitempty"`
+	ShellCommand string      `json:"shell_command,omitempty"`
 }
 
 type ToVariable struct {

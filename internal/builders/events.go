@@ -48,6 +48,11 @@ func (b *ToEventBuilder) Modifiers(modifiers ...karabiner.Modifier) *ToEventBuil
 	return b
 }
 
+func (b *ToEventBuilder) ShellCommand(command string) *ToEventBuilder {
+	b.toEvent.ShellCommand = command
+	return b
+}
+
 func (b *ToEventBuilder) SetVariable(name string, value interface{}) *ToEventBuilder {
 	switch value.(type) {
 	case string, bool, int, float32, float64:
