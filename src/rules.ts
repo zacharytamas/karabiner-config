@@ -1,7 +1,7 @@
 import { map, rule } from 'karabiner.ts'
 
 export const hyperRule = rule('Caps Lock → Hyper').manipulators([
-  map('caps_lock')
+  map('caps_lock', undefined, ['shift', 'command'])
     .parameters({ 'basic.to_if_alone_timeout_milliseconds': 250 })
     .toHyper()
     .toIfAlone('escape'),

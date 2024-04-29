@@ -7,7 +7,6 @@ import (
 	"github.com/zacharytamas/karabiner-config/internal/builders"
 	"github.com/zacharytamas/karabiner-config/internal/karabiner"
 	"github.com/zacharytamas/karabiner-config/internal/layers"
-	"github.com/zacharytamas/karabiner-config/internal/rules"
 )
 
 func Run() {
@@ -15,8 +14,8 @@ func Run() {
 	hyperRule := builders.
 		NewRule().
 		Description("Caps Lock → Hyper").
-		AddManipulators(rules.
-			Map("caps_lock").
+		AddManipulators(builders.NewManipulator().
+			From(builders.NewFromEvent().KeyCode("caps_lock").Modifiers("shift", "command")).
 			Parameters(map[string]any{"basic.to_if_alone_timeout_milliseconds": 250}).
 			To(builders.NewToEvent().
 				KeyCode("left_command").
