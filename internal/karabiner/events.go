@@ -8,11 +8,6 @@ type FromModifiers struct {
 	Optional  []Modifier `json:"optional,omitempty"`
 }
 
-type ToModifiers struct {
-	Mandatory []Modifier `json:"mandatory,omitempty"`
-	Optional  []Modifier `json:"optional,omitempty"`
-}
-
 type FromEvent struct {
 	KeyCode   KeyCode        `json:"key_code"`
 	Modifiers *FromModifiers `json:"modifiers,omitempty"`
