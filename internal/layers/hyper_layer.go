@@ -17,6 +17,24 @@ func (b *HyperLayerBuilder) Build() karabiner.Rule {
 	return b.ruleBuilder.Build()
 }
 
+func (b *HyperLayerBuilder) AddManipulators(manipulators ...*builders.ManipulatorBuilder) *HyperLayerBuilder {
+	for _, m := range manipulators {
+		m.Conditions(builders.NewCondition().Name(b.varName).Type("variable_if").Value(1))
+		b.ruleBuilder.AddManipulators(m)
+	}
+
+	return b
+}
+
+func (b *HyperLayerBuilder) AddAppKey(key karabiner.KeyCode, appName string) *HyperLayerBuilder {
+	b.AddManipulators(
+		builders.NewManipulator().
+			From(builders.NewFromEvent().KeyCode(key).MandatoryModifiers("any")).
+			To(builders.NewToEvent().ShellCommand(fmt.Sprintf("open -a %q.app", appName))),
+	)
+	return b
+}
+
 func NewHyperLayer(key karabiner.KeyCode, varName string) *HyperLayerBuilder {
 	builder := HyperLayerBuilder{
 		key:         key,

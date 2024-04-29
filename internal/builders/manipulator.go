@@ -37,6 +37,13 @@ func (b *ManipulatorBuilder) Parameters(parameters karabiner.BasicParameters) *M
 	return b
 }
 
+func (b *ManipulatorBuilder) Conditions(conditions ...*ConditionBuilder) *ManipulatorBuilder {
+	for _, c := range conditions {
+		b.manipulator.Conditions = append(b.manipulator.Conditions, c.Build())
+	}
+	return b
+}
+
 func (b *ManipulatorBuilder) Build() karabiner.BasicManipulator {
 	return *b.manipulator
 }

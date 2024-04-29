@@ -23,7 +23,14 @@ func Run() {
 			ToIfAlone(builders.NewToEvent().KeyCode("escape")),
 		).
 		Build()
-	hyperLayer := layers.NewHyperLayer("o", "hyper-o").Build()
+
+	hyperLayer := layers.NewHyperLayer("o", "hyper-o").
+		AddAppKey("t", "Warp").
+		AddAppKey("v", "Visual Studio Code - Insiders").
+		AddAppKey("s", "Spotify").
+		AddAppKey("m", "Messages").
+		AddAppKey("b", "Arc").
+		Build()
 
 	serialized, _ := json.MarshalIndent([]karabiner.Rule{hyperRule, hyperLayer}, "", "  ")
 
